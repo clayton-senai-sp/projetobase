@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="br">
+<head>
+    <title>Cadastro de Jogadores</title>
+    <div th:replace="~{/cadastros/fragments/heads.html :: heads}"></div>
+</head>
+<body>
+<div class="wrapper">
+    <!-- Sidebar -->
+    <div th:replace="~{/cadastros/fragments/sidebar.html :: sidebar}"></div>
+    <!-- End Sidebar -->
+
+    <div class="main-panel">
+        <div class="main-header">
+
+            <!-- Fragmento de código que será substituído pelo conteúdo do fragmento "logo" -->
+            <div th:replace="~{/cadastros/fragments/logo.html :: logo}"></div>
+            <!-- Navbar Header -->
+            <div th:replace="~{/cadastros/fragments/navbar.html :: navbar}"></div>
+            <!-- End Navbar -->
+        </div>
+
+
+        <div class="container">
+            <div class="page-inner">
+                <div class="page-header">
+                    <h3 class="fw-bold mb-3">Cadastrar Jogador</h3>
+                    <ul class="breadcrumbs mb-3">
+                        <li class="nav-home">
+                            <a href="#">
+                                <i class="icon-home"></i>
+                            </a>
+                        </li>
+                        <li class="separator">
+                            <i class="icon-arrow-right"></i>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#">Jogador</a>
+                        </li>
+                        <li class="separator">
+                            <i class="icon-arrow-right"></i>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#">Novo</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <form action="#" th:action="@{/jogador/inserir}" th:object="${jogador}" method="post">
+                            <div class="card-header">
+                                <div class="card-title">Dados do Jogador</div>
+                            </div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-12 col-lg-12">
+                                        <div class="form-group">
+                                            <label for="nome">Nome</label>
+                                            <input
+                                                    type="text"
+                                                    class="form-control"
+                                                    id="nome"
+                                                    placeholder="Informe o Nome do Jogador"
+                                                    th:field="*{nome}"
+                                            />
+
+                                        </div>
+                                        <div class="form-group col-md-3">
+                                            <label for="dataNascimento">Data de Nascimento</label>
+                                            <input
+                                                    type="date"
+                                                    class="form-control"
+                                                    id="dataNascimento"
+                                                    placeholder="Informe a Data de Nascimento do Jogador"
+                                                    th:field="*{dataNascimento}"
+                                            />
+                                        </div>
+                                        <div class="form-group col-md-3">
+                                            <label for="genero">Gênero</label>
+                                            <select
+                                                    class="form-select"
+                                                    id="genero"
+                                                    th:field="*{genero}"
+                                            >
+                                                <option value="">Selecione</option>
+                                                <option
+                                                        th:each="genero : ${T(br.senai.sp.torneioxadrezweb.enums.SexoEnum).values()}"
+                                                        th:value="${genero}"
+                                                        th:text="${genero.descricao}"
+                                                >
+
+                                                </option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group form-inline">
+                                            <label
+                                                    for="telefone"
+                                                    class="col-md-12 col-form-label"
+                                            >Telefone</label
+                                            >
+                                            <div class="col-md-12 p-0">
+                                                <input
+                                                        type="text"
+                                                        class="form-control input-full"
+                                                        id="telefone"
+                                                        placeholder="Informe o Telefone do Jogador"
+                                                        th:field="*{telefone}"
+                                                />
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="email">Email</label>
+                                            <input
+                                                    type="email"
+                                                    class="form-control"
+                                                    id="email"
+                                                    placeholder="Informe o Email do Jogador"
+                                                    th:field="*{email}"
+                                            />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-action">
+                                <button class="btn btn-success" type="submit">Salvar</button>
+                                <button class="btn btn-danger">Cancelar</button>
+                            </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div th:replace="~{/cadastros/fragments/footer.html :: footer}"></div>
+    </div>
+
+
+    <!-- End Custom template -->
+</div>
+<div th:replace="~{/cadastros/fragments/scripts.html :: scripts}"></div>
+<div th:replace="~{/cadastros/fragments/datatables.html :: datatables}"></div>
+
+</body>
+</html>
